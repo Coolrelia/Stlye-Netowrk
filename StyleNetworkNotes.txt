@@ -1,0 +1,73 @@
+Style Meter Battle Network Concept:
+
+Start Screen
+	Character selection
+		Battlefield
+			Results screen
+				Options for; 
+				Play Again - Starts a new battle with the same characters
+				Character Selection - Takes players back to the character selection screen
+				Quit - Takes the player to the start screen
+				
+
+Combat System:
+Objective: Make your enemies HP drop to 0
+
+Each character has 4 moves and a basic attack (maybe a passive ability)
+QWER - space
+Q, W, and E are basic abilites while R is an ultimate ability
+Each move has a cooldown while your R can only be used with an S rank
+Tile based movement, each player has a 3x3 grid they can move around on; entire battlefield is 3x6
+
+Each player has a Style Meter: E D C B A S
+The Meter starts at E and ends at S
+The meter goes up by 1 every time the player lands a unique attack on the enemy 
+the meter goes down by 1 if the player doesn't attack after 3 seconds of the previous attack or use the same attack in a row
+
+q - a - w - a - e - a
+This combo would get your rank up to S assuming you landed all your abilites and auto attacks
+
+Playable Characters:
+Gun Man:
+Basic: shoots little gun
+Q: Sword - attacks tile directly infront of player
+W: Wide Sword - attack the whole row of tiles infront of the player
+E: Long Sword - attacks 2 tiles directly infront of player
+R: Really Big Sword - Equip BEEG sword, attacks 2 tiles deep and 2 tiles wide
+
+Sword Man:
+Basic: shoots wrist arm cannon
+Q: Charge Shot - Depending on how long you hold it you get a different charge shot (3 levels of charge with varying visual and damage)
+W: Stun Shot - this shot stuns the enemy for (1) second 
+E: Missiles - an ability with 3 charges, if all charges are used it goes on cooldown, each charge comes back after some time
+R: Really Big Gun - Equip BEEG gun and shoot beeg energy 
+
+
+
+Sprites, Graphics and GameObjects:
+2 different tile sprites
+Background
+UI Graphics for each screen
+Style Meter graphic:
+Letters A and S should have little idle animations
+
+Playable Characters:
+Idle sprite
+Basic Attack sprite
+	GunMan: Holds up arm with wrist cannon
+	SwordMan: Holds out arm with pistol in hand, pistol has a small animation of a clip falling out after use
+Damage sprite - could just be the character turns red 
+
+3 charge shot sprites
+stun shot sprite
+missile sprite
+Big gun sprite 
+Big gun enery blast sprite 
+Each sword sprite - can all be the same sword different colors
+Big Sword sprite 
+
+
+	
+
+	
+	
