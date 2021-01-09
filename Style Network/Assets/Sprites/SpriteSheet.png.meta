@@ -1,28 +1,46 @@
 fileFormatVersion: 2
-guid: ea993dff96b52c64986f78e836fc714a
+guid: 117ed885813ac974b985f9a185e51291
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 6579529334113374070
-    second: SwordManSpriteSheet_0
+      213: 5546671543968653177
+    second: SpriteSheet_0
   - first:
-      213: -2868269369275342676
-    second: SwordManSpriteSheet_1
+      213: 8755591262435691780
+    second: SpriteSheet_1
   - first:
-      213: -2247169678027113467
-    second: SwordManSpriteSheet_2
+      213: -3459558614108198297
+    second: SpriteSheet_2
   - first:
-      213: 4856150074006850395
-    second: SwordManSpriteSheet_3
+      213: 659797372610145418
+    second: SpriteSheet_3
   - first:
-      213: 8551157871929919717
-    second: SwordManSpriteSheet_4
+      213: -689520407193891599
+    second: SpriteSheet_4
   - first:
-      213: -5745947642735977828
-    second: SwordManSpriteSheet_5
+      213: 160890277334083914
+    second: SpriteSheet_5
   - first:
-      213: 3229456012758238486
-    second: SwordManSpriteSheet_6
+      213: 1026407549584056185
+    second: SpriteSheet_6
+  - first:
+      213: -3086720242725003937
+    second: SpriteSheet_7
+  - first:
+      213: -4556197565260342421
+    second: SpriteSheet_8
+  - first:
+      213: -2764029711273647405
+    second: SpriteSheet_9
+  - first:
+      213: -5540648042656198855
+    second: SpriteSheet_10
+  - first:
+      213: 3929453942698372637
+    second: SpriteSheet_11
+  - first:
+      213: 8058879627694289943
+    second: SpriteSheet_12
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -144,7 +162,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: SwordManSpriteSheet_0
+      name: SpriteSheet_0
       rect:
         serializedVersion: 2
         x: 4
@@ -158,14 +176,56 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 67f071dc11f2f4b50800000000000000
-      internalID: 6579529334113374070
+      spriteID: 97fd408b16cb9fc40800000000000000
+      internalID: 5546671543968653177
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SwordManSpriteSheet_1
+      name: SpriteSheet_1
+      rect:
+        serializedVersion: 2
+        x: 43
+        y: 152
+        width: 20
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 40d4ef33ddb128970800000000000000
+      internalID: 8755591262435691780
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteSheet_2
+      rect:
+        serializedVersion: 2
+        x: 82
+        y: 152
+        width: 20
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 76a207e15cd2dffc0800000000000000
+      internalID: -3459558614108198297
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteSheet_3
       rect:
         serializedVersion: 2
         x: 2
@@ -179,14 +239,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ca0a534943cd138d0800000000000000
-      internalID: -2868269369275342676
+      spriteID: a8ce922f632182900800000000000000
+      internalID: 659797372610145418
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SwordManSpriteSheet_2
+      name: SpriteSheet_4
       rect:
         serializedVersion: 2
         x: 42
@@ -200,14 +260,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 50c3a27751370d0e0800000000000000
-      internalID: -2247169678027113467
+      spriteID: 1fc43d7c7d45e66f0800000000000000
+      internalID: -689520407193891599
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SwordManSpriteSheet_3
+      name: SpriteSheet_5
       rect:
         serializedVersion: 2
         x: 81
@@ -221,17 +281,38 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b5b4a2963c2846340800000000000000
-      internalID: 4856150074006850395
+      spriteID: a49ef44dad89b3200800000000000000
+      internalID: 160890277334083914
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SwordManSpriteSheet_4
+      name: SpriteSheet_6
       rect:
         serializedVersion: 2
         x: 120
+        y: 101
+        width: 38
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 97f9cbb6a388e3e00800000000000000
+      internalID: 1026407549584056185
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteSheet_7
+      rect:
+        serializedVersion: 2
+        x: 161
         y: 101
         width: 36
         height: 46
@@ -242,14 +323,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5e80bae47c0dba670800000000000000
-      internalID: 8551157871929919717
+      spriteID: f5d5e5b1b44c925d0800000000000000
+      internalID: -3086720242725003937
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SwordManSpriteSheet_5
+      name: SpriteSheet_8
       rect:
         serializedVersion: 2
         x: 1
@@ -263,14 +344,35 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c9a9ab0ff0b4240b0800000000000000
-      internalID: -5745947642735977828
+      spriteID: b6b5824447225c0c0800000000000000
+      internalID: -4556197565260342421
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SwordManSpriteSheet_6
+      name: SpriteSheet_9
+      rect:
+        serializedVersion: 2
+        x: 37
+        y: 49
+        width: 22
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3d2a8ee3f9134a9d0800000000000000
+      internalID: -2764029711273647405
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteSheet_10
       rect:
         serializedVersion: 2
         x: 1
@@ -284,8 +386,50 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 615443a122551dc20800000000000000
-      internalID: 3229456012758238486
+      spriteID: 93f8308f5f9ab13b0800000000000000
+      internalID: -5540648042656198855
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteSheet_11
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 0
+        width: 45
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d1e6bcfaa89388630800000000000000
+      internalID: 3929453942698372637
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpriteSheet_12
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 0
+        width: 32
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 714b958d254e6df60800000000000000
+      internalID: 8058879627694289943
       vertices: []
       indices: 
       edges: []
