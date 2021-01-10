@@ -12,6 +12,11 @@ public class Player : MonoBehaviour
     public int health;
     public char previousAttack;
 
+    public GameObject basicAttackAnim;
+    public GameObject swordAnim;
+    public GameObject wSwordAnim;
+    public GameObject lSwordAnim;
+
     public Animator anim;
 
     private Vector3 pos;
@@ -21,7 +26,6 @@ public class Player : MonoBehaviour
     private void Start()
     {
         sm = FindObjectOfType<StyleMeter>();
-        InvokeRepeating("ResetPreviousAttack", 0f, 5f);
     }
 
     private void Update()
@@ -56,6 +60,7 @@ public class Player : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.LeftArrow))
             {
+                anim.SetTrigger("Left");
                 pos.x -= 1;
                 transform.position = pos;
             }
@@ -64,15 +69,11 @@ public class Player : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.RightArrow))
             {
+                anim.SetTrigger("Right");
                 pos.x += 1;
                 transform.position = pos;
             }
         }
-    }
-
-    void ResetPreviousAttack()
-    {
-        previousAttack = '0';
     }
 
     void BasicAttack()
@@ -84,16 +85,20 @@ public class Player : MonoBehaviour
             {
                 if(transform.position.y == enemy.transform.position.y)
                 {
-                    if (previousAttack == 'B')
+                    if(previousAttack == 'B')
                     {
-                        sm.rank -= 1;
+                        previousAttack = 'B';
                     }
                     else
                     {
                         sm.rank += 1;
+                        previousAttack = 'B';
                     }
-                    previousAttack = 'B';
+
+                    Instantiate(basicAttackAnim, enemy.transform.position, Quaternion.identity);
                     enemy.health -= 10;
+                    sm.StopAllCoroutines();
+                    sm.StartCoroutine(sm.ResetStyleRank(7));
                 }
             }
         }
@@ -110,16 +115,21 @@ public class Player : MonoBehaviour
                 {
                     if(enemy.transform.position.x == transform.position.x + 1 && enemy.transform.position.y == transform.position.y)
                     {
+
                         if (previousAttack == 'Q')
                         {
-                            sm.rank -= 1;
+                            previousAttack = 'Q';
                         }
                         else
                         {
                             sm.rank += 1;
+                            previousAttack = 'Q';
                         }
-                        previousAttack = 'Q';
+
+                        Instantiate(swordAnim, enemy.transform.position, Quaternion.identity);
                         enemy.health -= 50;
+                        sm.StopAllCoroutines();
+                        sm.StartCoroutine(sm.ResetStyleRank(7));
                     }
                 }
             }
@@ -135,19 +145,24 @@ public class Player : MonoBehaviour
                 anim.SetTrigger("Sword");
                 foreach (Enemy enemy in FindObjectsOfType<Enemy>())
                 {
-                    if(enemy.transform.position.y == transform.position.y && enemy.transform.position.x == transform.position.x + 1 ||
-                        enemy.transform.position.y == transform.position.y && enemy.transform.position.x == transform.position.x + 2)
+                    if (enemy.transform.position.y == transform.position.y && enemy.transform.position.x == transform.position.x + 1 ||
+                        enemy.transform.position.y == transform.position.y + 1 && enemy.transform.position.x == transform.position.x + 1 ||
+                        enemy.transform.position.y == transform.position.y - 1 && enemy.transform.position.x == transform.position.x + 1)
                     {
                         if (previousAttack == 'W')
                         {
-                            sm.rank -= 1;
+                            previousAttack = 'W';
                         }
                         else
                         {
                             sm.rank += 1;
+                            previousAttack = 'W';
                         }
-                        previousAttack = 'W';
+
+                        Instantiate(wSwordAnim, enemy.transform.position, Quaternion.identity);
                         enemy.health -= 80;
+                        sm.StopAllCoroutines();
+                        sm.StartCoroutine(sm.ResetStyleRank(7));
                     }
                 }
             }
@@ -163,20 +178,23 @@ public class Player : MonoBehaviour
                 anim.SetTrigger("Sword");
                 foreach (Enemy enemy in FindObjectsOfType<Enemy>())
                 {
-                    if(enemy.transform.position.y == transform.position.y && enemy.transform.position.x == transform.position.x + 1 ||
-                       enemy.transform.position.y == transform.position.y + 1 && enemy.transform.position.x == transform.position.x + 1 ||
-                       enemy.transform.position.y == transform.position.y - 1 && enemy.transform.position.x == transform.position.x + 1)
+                    if (enemy.transform.position.y == transform.position.y && enemy.transform.position.x == transform.position.x + 1 ||
+                        enemy.transform.position.y == transform.position.y && enemy.transform.position.x == transform.position.x + 2)
                     {
                         if (previousAttack == 'E')
                         {
-                            sm.rank -= 1;
+                            previousAttack = 'E';
                         }
                         else
                         {
                             sm.rank += 1;
+                            previousAttack = 'E';
                         }
-                        previousAttack = 'E';
+
+                        Instantiate(lSwordAnim, enemy.transform.position, Quaternion.identity);
                         enemy.health -= 100;
+                        sm.StopAllCoroutines();
+                        sm.StartCoroutine(sm.ResetStyleRank(7));
                     }
                 }
             }
