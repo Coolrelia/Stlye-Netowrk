@@ -37,41 +37,45 @@ public class Player : MonoBehaviour
         E();
         R();
 
+        //Movement
+        if(anim.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
+        {
+            if (pos.y < topMost)
+            {
+                if (Input.GetKeyDown(KeyCode.UpArrow))
+                {
+                    anim.SetTrigger("Move");
+                    pos.y += 1;
+                    transform.position = pos;
+                }
 
-        //Movement 
-        if(pos.y < topMost)
-        {
-            if (Input.GetKeyDown(KeyCode.UpArrow))
-            {
-                pos.y += 1;
-                transform.position = pos;
             }
-
-        }
-        if(pos.y > bottomMost)
-        {
-            if (Input.GetKeyDown(KeyCode.DownArrow))
+            if (pos.y > bottomMost)
             {
-                pos.y -= 1;
-                transform.position = pos;
+                if (Input.GetKeyDown(KeyCode.DownArrow))
+                {
+                    anim.SetTrigger("Move");
+                    pos.y -= 1;
+                    transform.position = pos;
+                }
             }
-        }
-        if(pos.x > leftMost)
-        {
-            if (Input.GetKeyDown(KeyCode.LeftArrow))
+            if (pos.x > leftMost)
             {
-                anim.SetTrigger("Left");
-                pos.x -= 1;
-                transform.position = pos;
+                if (Input.GetKeyDown(KeyCode.LeftArrow))
+                {
+                    anim.SetTrigger("Move");
+                    pos.x -= 1;
+                    transform.position = pos;
+                }
             }
-        }
-        if (pos.x < rightMost)
-        {
-            if (Input.GetKeyDown(KeyCode.RightArrow))
+            if (pos.x < rightMost)
             {
-                anim.SetTrigger("Right");
-                pos.x += 1;
-                transform.position = pos;
+                if (Input.GetKeyDown(KeyCode.RightArrow))
+                {
+                    anim.SetTrigger("Move");
+                    pos.x += 1;
+                    transform.position = pos;
+                }
             }
         }
     }
@@ -80,6 +84,7 @@ public class Player : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Space))
         {
+            Vector2 firePosition = transform.position;
             anim.SetTrigger("BasicAttack");
             foreach(Enemy enemy in FindObjectsOfType<Enemy>())
             {
@@ -178,7 +183,7 @@ public class Player : MonoBehaviour
                 anim.SetTrigger("Sword");
                 foreach (Enemy enemy in FindObjectsOfType<Enemy>())
                 {
-                    if (enemy.transform.position.y == transform.position.y && enemy.transform.position.x == transform.position.x + 1 ||
+                    if(enemy.transform.position.y == transform.position.y && enemy.transform.position.x == transform.position.x + 1 ||
                         enemy.transform.position.y == transform.position.y && enemy.transform.position.x == transform.position.x + 2)
                     {
                         if (previousAttack == 'E')
@@ -203,9 +208,34 @@ public class Player : MonoBehaviour
 
     void R()
     {
-        if (sm.rank >= 5)
+        if (sm.rank >= 6)
         {
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                anim.SetTrigger("BigSword");
+                foreach (Enemy enemy in FindObjectsOfType<Enemy>())
+                {
+                    if (enemy.transform.position.y == transform.position.y && enemy.transform.position.x == transform.position.x + 1 ||
+                        enemy.transform.position.y == transform.position.y && enemy.transform.position.x == transform.position.x + 2 ||
+                        enemy.transform.position.y == transform.position.y && enemy.transform.position.x == transform.position.x + 3)
+                    {
 
+                        if (previousAttack == 'R')
+                        {
+                            previousAttack = 'R';
+                        }
+                        else
+                        {
+                            previousAttack = 'R';
+                        }
+
+                        Instantiate(swordAnim, enemy.transform.position, Quaternion.identity);
+                        enemy.health -= 200;
+                        sm.StopAllCoroutines();
+                        sm.StartCoroutine(sm.ResetStyleRank(7));
+                    }
+                }
+            }
         }
     }
 }

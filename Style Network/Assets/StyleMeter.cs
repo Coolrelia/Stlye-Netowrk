@@ -21,6 +21,7 @@ public class StyleMeter : MonoBehaviour
     public GameObject qIcon;
     public GameObject wIcon;
     public GameObject eIcon;
+    public GameObject rIcon;
 
     public int rank;
 
@@ -71,6 +72,15 @@ public class StyleMeter : MonoBehaviour
         else
         {
             eIcon.GetComponent<SpriteRenderer>().color = Color.white;
+        }
+
+        if (rank < 6)
+        {
+            rIcon.GetComponent<SpriteRenderer>().color = Color.grey;
+        }
+        else
+        {
+            rIcon.GetComponent<SpriteRenderer>().color = Color.white;
         }
     }
 
