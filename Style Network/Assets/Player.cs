@@ -11,11 +11,13 @@ public class Player : MonoBehaviour
 
     public int health;
     public char previousAttack;
+    public bool paralyzed;
 
     public GameObject basicAttackAnim;
     public GameObject swordAnim;
     public GameObject wSwordAnim;
     public GameObject lSwordAnim;
+    public GameObject swordSlashPrefab;
 
     public Animator anim;
 
@@ -28,56 +30,66 @@ public class Player : MonoBehaviour
         sm = FindObjectOfType<StyleMeter>();
     }
 
-    private void Update()
+    public void Paralyzed()
     {
+        StartCoroutine(Paralysis());
+    }
+
+    IEnumerator Paralysis()
+    {
+        paralyzed = true;
+        yield return new WaitForSecondsRealtime(2.5f);
+        paralyzed = false;
+    }
+
+    private void Update()
+    {//Movement
+        if (anim.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
+        {
+            if (paralyzed == false)
+            {
+                if (pos.y < topMost)
+                {
+                    if (Input.GetKeyDown(KeyCode.UpArrow))
+                    {
+                        pos.y += 1;
+                        transform.position = pos;
+                    }
+
+                }
+                if (pos.y > bottomMost)
+                {
+                    if (Input.GetKeyDown(KeyCode.DownArrow))
+                    {
+                        pos.y -= 1;
+                        transform.position = pos;
+                    }
+                }
+                if (pos.x > leftMost)
+                {
+                    if (Input.GetKeyDown(KeyCode.LeftArrow))
+                    {
+                        pos.x -= 1;
+                        transform.position = pos;
+                    }
+                }
+                if (pos.x < rightMost)
+                {
+                    if (Input.GetKeyDown(KeyCode.RightArrow))
+                    {
+                        pos.x += 1;
+                        transform.position = pos;
+                    }
+                }
+            }
+        }
+
         //Abilities
         BasicAttack();
         Q();
         W();
         E();
         R();
-
-        //Movement
-        if(anim.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
-        {
-            if (pos.y < topMost)
-            {
-                if (Input.GetKeyDown(KeyCode.UpArrow))
-                {
-                    anim.SetTrigger("Move");
-                    pos.y += 1;
-                    transform.position = pos;
-                }
-
-            }
-            if (pos.y > bottomMost)
-            {
-                if (Input.GetKeyDown(KeyCode.DownArrow))
-                {
-                    anim.SetTrigger("Move");
-                    pos.y -= 1;
-                    transform.position = pos;
-                }
-            }
-            if (pos.x > leftMost)
-            {
-                if (Input.GetKeyDown(KeyCode.LeftArrow))
-                {
-                    anim.SetTrigger("Move");
-                    pos.x -= 1;
-                    transform.position = pos;
-                }
-            }
-            if (pos.x < rightMost)
-            {
-                if (Input.GetKeyDown(KeyCode.RightArrow))
-                {
-                    anim.SetTrigger("Move");
-                    pos.x += 1;
-                    transform.position = pos;
-                }
-            }
-        }
     }
 
     void BasicAttack()
@@ -101,7 +113,14 @@ public class Player : MonoBehaviour
                     }
 
                     Instantiate(basicAttackAnim, enemy.transform.position, Quaternion.identity);
-                    enemy.health -= 10;
+                    if(enemy.invulnerable == false)
+                    {
+                        enemy.health -= 10;
+                    }
+                    else
+                    {
+                        enemy.health -= 1;
+                    }
                     sm.StopAllCoroutines();
                     sm.StartCoroutine(sm.ResetStyleRank(7));
                 }
@@ -116,27 +135,19 @@ public class Player : MonoBehaviour
             if(Input.GetKeyDown(KeyCode.Q))
             {
                 anim.SetTrigger("Sword");
-                foreach (Enemy enemy in FindObjectsOfType<Enemy>())
+                if (previousAttack == 'Q')
                 {
-                    if(enemy.transform.position.x == transform.position.x + 1 && enemy.transform.position.y == transform.position.y)
-                    {
-
-                        if (previousAttack == 'Q')
-                        {
-                            previousAttack = 'Q';
-                        }
-                        else
-                        {
-                            sm.rank += 1;
-                            previousAttack = 'Q';
-                        }
-
-                        Instantiate(swordAnim, enemy.transform.position, Quaternion.identity);
-                        enemy.health -= 50;
-                        sm.StopAllCoroutines();
-                        sm.StartCoroutine(sm.ResetStyleRank(7));
-                    }
+                    previousAttack = 'Q';
                 }
+                else
+                {
+                    sm.rank += 1;
+                    previousAttack = 'Q';
+                }
+                Vector2 position = transform.position;
+                Instantiate(swordSlashPrefab, position + new Vector2(1, 0), Quaternion.identity);
+                sm.StopAllCoroutines();
+                sm.StartCoroutine(sm.ResetStyleRank(7));               
             }
         }
     }
@@ -148,28 +159,20 @@ public class Player : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.W))
             {
                 anim.SetTrigger("Sword");
-                foreach (Enemy enemy in FindObjectsOfType<Enemy>())
+                if (previousAttack == 'W')
                 {
-                    if (enemy.transform.position.y == transform.position.y && enemy.transform.position.x == transform.position.x + 1 ||
-                        enemy.transform.position.y == transform.position.y + 1 && enemy.transform.position.x == transform.position.x + 1 ||
-                        enemy.transform.position.y == transform.position.y - 1 && enemy.transform.position.x == transform.position.x + 1)
-                    {
-                        if (previousAttack == 'W')
-                        {
-                            previousAttack = 'W';
-                        }
-                        else
-                        {
-                            sm.rank += 1;
-                            previousAttack = 'W';
-                        }
-
-                        Instantiate(wSwordAnim, enemy.transform.position, Quaternion.identity);
-                        enemy.health -= 80;
-                        sm.StopAllCoroutines();
-                        sm.StartCoroutine(sm.ResetStyleRank(7));
-                    }
+                    previousAttack = 'W';
                 }
+                else
+                {
+                    sm.rank += 1;
+                    previousAttack = 'W';
+                }
+                Vector2 position = transform.position;
+                Instantiate(swordSlashPrefab, position + new Vector2(1, 0), Quaternion.identity);
+                Instantiate(swordSlashPrefab, position + new Vector2(1, 1), Quaternion.identity);
+                sm.StopAllCoroutines();
+                sm.StartCoroutine(sm.ResetStyleRank(7));
             }
         }
     }
@@ -181,27 +184,21 @@ public class Player : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.E))
             {
                 anim.SetTrigger("Sword");
-                foreach (Enemy enemy in FindObjectsOfType<Enemy>())
+                if (previousAttack == 'E')
                 {
-                    if(enemy.transform.position.y == transform.position.y && enemy.transform.position.x == transform.position.x + 1 ||
-                        enemy.transform.position.y == transform.position.y && enemy.transform.position.x == transform.position.x + 2)
-                    {
-                        if (previousAttack == 'E')
-                        {
-                            previousAttack = 'E';
-                        }
-                        else
-                        {
-                            sm.rank += 1;
-                            previousAttack = 'E';
-                        }
-
-                        Instantiate(lSwordAnim, enemy.transform.position, Quaternion.identity);
-                        enemy.health -= 100;
-                        sm.StopAllCoroutines();
-                        sm.StartCoroutine(sm.ResetStyleRank(7));
-                    }
+                    previousAttack = 'E';
                 }
+                else
+                {
+                    sm.rank += 1;
+                    previousAttack = 'E';
+                }
+                Vector2 position = transform.position;
+                Instantiate(swordSlashPrefab, position + new Vector2(1, 0), Quaternion.identity);
+                Instantiate(swordSlashPrefab, position + new Vector2(2, 0), Quaternion.identity);
+                Instantiate(swordSlashPrefab, position + new Vector2(3, 0), Quaternion.identity);
+                sm.StopAllCoroutines();
+                sm.StartCoroutine(sm.ResetStyleRank(7));
             }
         }
     }
@@ -230,7 +227,14 @@ public class Player : MonoBehaviour
                         }
 
                         Instantiate(swordAnim, enemy.transform.position, Quaternion.identity);
-                        enemy.health -= 200;
+                        if (enemy.invulnerable == false)
+                        {
+                            enemy.health -= 200;
+                        }
+                        else
+                        {
+                            enemy.health -= 1;
+                        }
                         sm.StopAllCoroutines();
                         sm.StartCoroutine(sm.ResetStyleRank(7));
                     }
