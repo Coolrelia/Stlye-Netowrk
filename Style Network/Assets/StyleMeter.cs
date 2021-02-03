@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class StyleMeter : MonoBehaviour
 {
+    public Sprite F;
     public Sprite E;
     public Sprite D;
     public Sprite C;
@@ -17,21 +18,70 @@ public class StyleMeter : MonoBehaviour
     public SpriteRenderer currentLetter;
     public SpriteRenderer currentBackground;
 
+    public GameObject qIcon;
+    public GameObject wIcon;
+    public GameObject eIcon;
+    public GameObject rIcon;
+
     public int rank;
 
     private void Start()
     {
-        InvokeRepeating("ResetStyleRank", 5f, 5f);
+        StartCoroutine(ResetStyleRank(7));
     }
 
     private void Update()
     {
         StyleMeterRank();
+        AbilityIcons();
     }
 
-    void ResetStyleRank()
+    public IEnumerator ResetStyleRank(float time)
     {
-        rank--;
+        while(true)
+        {
+            yield return new WaitForSecondsRealtime(time);
+            rank = 0;
+        }
+    }
+
+    private void AbilityIcons()
+    {
+        if (rank < 1)
+        {
+            qIcon.GetComponent<SpriteRenderer>().color = Color.grey;
+        }
+        else
+        {
+            qIcon.GetComponent<SpriteRenderer>().color = Color.white;
+        }
+
+        if (rank < 3)
+        {
+            wIcon.GetComponent<SpriteRenderer>().color = Color.grey;
+        }
+        else
+        {
+            wIcon.GetComponent<SpriteRenderer>().color = Color.white;
+        }
+
+        if(rank < 5)
+        {
+            eIcon.GetComponent<SpriteRenderer>().color = Color.grey;
+        }
+        else
+        {
+            eIcon.GetComponent<SpriteRenderer>().color = Color.white;
+        }
+
+        if (rank < 6)
+        {
+            rIcon.GetComponent<SpriteRenderer>().color = Color.grey;
+        }
+        else
+        {
+            rIcon.GetComponent<SpriteRenderer>().color = Color.white;
+        }
     }
 
     private void StyleMeterRank()
@@ -39,31 +89,36 @@ public class StyleMeter : MonoBehaviour
         switch(rank)
         {
             case 0:
-                currentLetter.sprite = E;
+                currentLetter.sprite = F;
                 currentBackground.sprite = background;
                 break;
 
             case 1:
-                currentLetter.sprite = D;
+                currentLetter.sprite = E;
                 currentBackground.sprite = background;
                 break;
 
             case 2:
-                currentLetter.sprite = C;
+                currentLetter.sprite = D;
                 currentBackground.sprite = background;
                 break;
 
             case 3:
-                currentLetter.sprite = B;
+                currentLetter.sprite = C;
                 currentBackground.sprite = background;
                 break;
 
             case 4:
-                currentLetter.sprite = A;
+                currentLetter.sprite = B;
                 currentBackground.sprite = background;
                 break;
 
             case 5:
+                currentLetter.sprite = A;
+                currentBackground.sprite = background;
+                break;
+
+            case 6:
                 currentLetter.sprite = S;
                 currentBackground.sprite = backgroundS;
                 break;
